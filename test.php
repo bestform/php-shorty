@@ -1,7 +1,7 @@
 <?php
   require_once 'PHPUnit/Framework.php';
   /****************************************************************************
-  * Copyright 2011 by ESONO AG, Freiburg, Germany (P. Holz - 8/18/11 7:30 PM)
+  * 2011 Philipp Holz, Freiburg, Germany (P. Holz - 25.06.11 18:11)
   *
   /***************************************************************************/
   class TestURLFuntions extends PHPUnit_Framework_TestCase {
