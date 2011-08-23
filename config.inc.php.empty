@@ -1,0 +1,14 @@
+<?php
+
+  /**
+   *
+   */
+  if (!defined('BITLY_API_KEY')) define('BITLY_API_KEY', '');
+
+  /**
+   *
+   */
+  if (!defined('BITLY_LOGIN')) define('BITLY_LOGIN', '');
+
+    
+ 
