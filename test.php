@@ -116,27 +116,28 @@
         $oResolver = $this->oShorty->GetResolverByURL($aResolver['sShortURL']);
         $this->assertEquals($oResolver->GetName(), $aResolver['sName']);
 
-        $expected = null;
+        $expectedException = null;
         $e = null;
+        $bThrownAsExpected = false;
         try{
           $oResolver->Resolve("unknown");
-        } catch (InvalidArgumentException $expected){
-            // pass
+        } catch (InvalidArgumentException $expectedException){
+            $bThrownAsExpected = true;
         } catch (Exception $e) {
             // pass
         }
-        if($expected == null){
+        if(!$bThrownAsExpected){
             $this->fail("resolver didn't throw expected Exception when provided with a wrong url");
         }
-        $expected = null;
+        $bThrownAsExpected = false;
         try{
           $oResolver->Resolve($aResolver["sName"]);
-        } catch (InvalidArgumentException $expected){
-            // pass
+        } catch (InvalidArgumentException $expectedException){
+            $bThrownAsExpected = true;
         } catch (Exception $e) {
             // pass
         }
-        if($expected == null){
+        if(!$bThrownAsExpected){
             $this->fail("resolver didn't throw expected Exception when provided with a wrong formatted url");
         }
 
