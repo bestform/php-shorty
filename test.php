@@ -117,9 +117,12 @@
         $this->assertEquals($oResolver->GetName(), $aResolver['sName']);
 
         $expected = null;
+        $e = null;
         try{
           $oResolver->Resolve("unknown");
         } catch (InvalidArgumentException $expected){
+            // pass
+        } catch (Exception $e) {
             // pass
         }
         if($expected == null){
@@ -129,6 +132,8 @@
         try{
           $oResolver->Resolve($aResolver["sName"]);
         } catch (InvalidArgumentException $expected){
+            // pass
+        } catch (Exception $e) {
             // pass
         }
         if($expected == null){
