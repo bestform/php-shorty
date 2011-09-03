@@ -56,7 +56,7 @@
         $oShortener = $this->aShortenerMap[$sName];
       } catch (Exception $e) {
         $oShortener = null;
-        throw new Exception("unknown shortener: ".$sName);
+        throw new InvalidArgumentException("unknown shortener: ".$sName);
       }
  
       return $oShortener;
@@ -76,7 +76,7 @@
         $oResolver = $this->aResolverMap[$sName];
       } catch (Exception $e) {
         $oResolver = null;
-        throw new Exception("unknown resolver: ".$sName);
+        throw new InvalidArgumentException("unknown resolver: ".$sName);
       }
  
       return $oResolver;

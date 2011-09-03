@@ -1,5 +1,4 @@
 <?php
-  require_once 'PHPUnit/Framework.php';
   /****************************************************************************
   * 2011 Philipp Holz, Freiburg, Germany (P. Holz - 25.06.11 18:11)
   *
@@ -95,10 +94,10 @@
      *
      *
      * @return void
+     * @expectedException InvalidArgumentException
      */
     public function testUnknowResolver() {
     // ------------------------------------------------------------------------
-      $this->setExpectedException('Exception', 'unknown resolver: foo');
       $this->oShorty->GetResolverByName('foo');
     }
     // ------------------------------------------------------------------------
@@ -117,13 +116,24 @@
         $oResolver = $this->oShorty->GetResolverByURL($aResolver['sShortURL']);
         $this->assertEquals($oResolver->GetName(), $aResolver['sName']);
 
-        //at this point some magic happens where phpunit exits while exception is thrown oO @todo
-
-        //$this->setExpectedException('Exception', 'Not a correct URL');
-        //$oResolver->Resolve("unknown");
-
-        //$this->setExpectedException('Exception', "Can't parse URL");
-        //$oResolver->Resolve($aResolver["sName"]);
+        $expected = null;
+        try{
+          $oResolver->Resolve("unknown");
+        } catch (InvalidArgumentException $expected){
+            // pass
+        }
+        if($expected == null){
+            $this->fail("resolver didn't throw expected Exception when provided with a wrong url");
+        }
+        $expected = null;
+        try{
+          $oResolver->Resolve($aResolver["sName"]);
+        } catch (InvalidArgumentException $expected){
+            // pass
+        }
+        if($expected == null){
+            $this->fail("resolver didn't throw expected Exception when provided with a wrong formatted url");
+        }
 
         $this->assertEquals($oResolver->GetHandle($aResolver["sShortURL"]), $aResolver["sHandle"]);
         $this->assertEquals($oResolver->Resolve($aResolver["sShortURL"]), $aResolver["sURL"]);

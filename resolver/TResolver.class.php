@@ -33,10 +33,10 @@
     // ------------------------------------------------------------------------
       if (substr($sURL, 0, strlen($this->sName)) == $this->sName) {
         if (strrpos($sURL, '/') < 7) {
-          throw new Exception("Can't parse URL");
+          throw new InvalidArgumentException("Can't parse URL");
         }
       } else {
-        throw new Exception('Not a correct URL');
+        throw new InvalidArgumentException('Not a correct URL');
       }
     }
     // ------------------------------------------------------------------------
